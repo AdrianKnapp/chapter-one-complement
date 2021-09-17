@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Button } from "./Button";
 interface SideBarProps {
   genres: GenreResponseProps[];
+  changeGenre: (genre: number) => void;
+  selectedGenre: GenreResponseProps;
 }
 interface GenreResponseProps {
   id: number;
@@ -11,10 +13,8 @@ interface GenreResponseProps {
 
 
 export function SideBar(props: SideBarProps) {
-  const [selectedGenreId, setSelectedGenreId] = useState(1);
-
   function handleClickButton(id: number) {
-    setSelectedGenreId(id);
+    props.changeGenre(id);
   }
 
   return (
@@ -27,9 +27,9 @@ export function SideBar(props: SideBarProps) {
             title={genre.title}
             iconName={genre.name}
             onClick={() => handleClickButton(genre.id)}
-            selected={selectedGenreId === genre.id}
-          />
-        ))}
+            selected={props.selectedGenre.id === genre.id}
+            />
+            ))}
       </div>
     </nav>
   );

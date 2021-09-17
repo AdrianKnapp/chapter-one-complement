@@ -53,10 +53,10 @@ export function App() {
       setSelectedGenre(response.data);
     })
   }, [selectedGenreId]);
-
+  
   return (
     <div style={{ display: 'flex', flexDirection: 'row' }}>
-      <SideBar genres={genres}/>
+      <SideBar genres={genres} changeGenre={setSelectedGenreId} selectedGenre={selectedGenre}/>
       <Content movies={movies} selectedGenre={selectedGenre}/>
     </div>
   )
