@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback } from "react";
 import { Button } from "./Button";
 interface SideBarProps {
   genres: GenreResponseProps[];
@@ -13,9 +13,9 @@ interface GenreResponseProps {
 
 
 export function SideBar(props: SideBarProps) {
-  function handleClickButton(id: number) {
+  const handleClickButton = useCallback((id: number) => {
     props.changeGenre(id);
-  }
+  }, []);
 
   return (
     <nav className="sidebar">
